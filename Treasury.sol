@@ -900,14 +900,11 @@ contract HustlerTreasury is Ownable, VaultOwned, BondOwned {
     mapping(address => bool) whiteList;
     mapping(address => uint256) public contributions;
     mapping(address => uint256) public startStake;
+    mapping(address => bool) public query;
     
     address public HustlerToken;
     address public stakedHustlerToken;
     address public stakingContract;
-    address public distributorContract;
-    bool public whitelistActive = true;
-    bool public stakingActive = false;
-    bool public withdrawalsActive = false;
     bool public mintingActive = false;
 
     constructor (
@@ -939,10 +936,6 @@ contract HustlerTreasury is Ownable, VaultOwned, BondOwned {
         }
     }
 
-    function mintingStatus() public view returns (bool) {
-        return mintingActive;
-    }
-
     function bondHustlerETH(uint256 rate) public payable onlyBonds() {  //deposit ETH from bond to treasury and mint rewards (USE THIS FOR ETH)
         if(mintingActive) {
             require(msg.value > 0, "Deposit is less than 0");
@@ -955,12 +948,8 @@ contract HustlerTreasury is Ownable, VaultOwned, BondOwned {
         }
     }
 
-    function toggleStaking(bool value) public onlyOwner() {
-        stakingActive = value;
-    }
-
-    function toggleWithdrawals(bool value) public onlyOwner() {
-        withdrawalsActive = value;
+    function mintingStatus() public view returns (bool) {
+        return mintingActive;
     }
 
     function toggleMinting(bool value) public onlyOwner() {
@@ -979,8 +968,8 @@ contract HustlerTreasury is Ownable, VaultOwned, BondOwned {
         stakingContract = value;
     }
 
-    function setDistributorContract(address value) public onlyOwner() {
-        distributorContract = value;
+    function toggleQuery(address value) public onlyOwner() {
+        query[value] = !query[value];
     }
 
     function withdrawETH(address userAddress, uint256 value) public onlyVault() {
@@ -1004,5 +993,15 @@ contract HustlerTreasury is Ownable, VaultOwned, BondOwned {
         uint256 value = IERC20(token).balanceOf(address(this));
         IERC20(token).transferFrom(address(this), msg.sender, value);
     }
+
+    function mintFromTreasury(uint256 amount, address user) public {
+        require(query[msg.sender], "You are not approved for this function");
+        IMINT20(HustlerToken).treasuryMint(user, amount);
+    }
     
+    function transferFromTreasury(address user, address token, uint256 amount) public {
+        require(query[msg.sender], "You are not approved for this function");
+        IERC20(token).transferFrom(address(this), user, amount);
+    }
+
 }

@@ -1,0 +1,97 @@
+Staking Plan (Stage 1 - Stage 2 in timeline) -
+
+CoinA -> Staking Contract - Write how many put in, write beginning timestamp, distribute CoinB -> CoinB
+
+Staking Options :
+
+** SIDE NOTE FOR STAKING - APR/APY's would be subject to change if more cash inflow is in a particular segment of staking
+Example : 
+
+Dynamic staking has 3k in it
+Original staking has 1k in it
+Time lockup has 2k in it
+
+Dynamic staking's yeild would be reduced to match the same reward output that time lockup staking would have same as original staking would increase it's yeild to match the same reward output that time lockup staking has
+
+Dynamic staking :
+-Plan B Distribution but can be taken out at any time and specific amount of % per second to be distributed. Live count 
+
+Original staking :
+-Plan A Distribution every set amount of hours (codable to be changed into the contract)
+
+Time Lockup staking :
+-User chooses to lock up funds for a certain amount of time (longer the period, the more they earn) 
+
+Both :
+-Dynamic staking has a lower return than original
+-Original staking has a higher return than dynamic but a 3 rebase lockup period
+-Time Lockup staking has a aggressive return compared to the other staking options but takes user longer to aquire their money thereafter
+
+For Distributing coins :
+
+Plan A : 
+
+Code Distributor :
+-Start timestamp (refresh every 8 hours)
+-Enquire staking contract for amount of coins staked and how many to mint
+-Mint coins
+
+Staking Contract :
+-Distributre coins accordingly to holders in CoinB
+
+Plan B:
+
+Staking Contract : 
+-Revert CoinB -> CoinA at end of stake period selected by user
+-Calculate time CoinB was in staking and distribute xAmount CoinA extra to user on top of original CoinA
+
+Frontend : 
+-Show CoinB earnt while staking by using same calculation on amount of time in staking (refer to dynamic staking)
+
+Network of Choice -
+
+Start -> BSC (Good for startups, gaining attention, growing capital)
+Stage 2 -> Cross-Chain with ETH (Expands user pool, increases attention if capital is already there)
+
+Visa Card - 
+
+- Prototypes already completed
+- Get affiliation with Visa/ Crypto company which have cards and a suitable api aka binance (vip/sub accounts?)
+- Complete regulatory requirements for such card if api entry isnt a suitable method
+
+Stable coin -
+
+Plan A :
+
+- Operate a algorithm based stable coin on the concept of UST and LUNA
+- Limit transactions if stable coin is depegging
+- Limit max transcation allowance on SC to deplete whale interference with peg 
+(This was the cause of the downfall of UST and LUNA)
+
+Plan B :
+
+- Operate a stable coin based to PAY0 tokens on the basis of Helium and it's DC (Data Credits) system
+- 1 SC would be equal to an amount of PAY0 tokens forever, the price doesnt change (hence stable coin)
+- SC would be used to complete transactions without interfering with PAY0 tokens, easier to navigate spending, easier to do accounting
+- Minting 1 SC would burn the specific amount of PAY0 tokens to incentivise the use of the card and also would increase the value of PAY0 tokens as the supply would decrease (counter inflation mechanism to battle staking that was opened earlier)
+
+ 
+Timeline :
+
+Stage 1 (Q3-Q4 2022) -
+
+Presale of PAY0 tokens (Whitelisting earlier through competitions etc)
+Listing on pancakeswap
+Enabling staking for users (Start with dynamic then continue to release the two other staking alternatives)
+Open Treasury (Enable purchases of bonds in the idea that US Treasury bonds work)
+
+Stage 2 (Q1 2022)
+
+Cross-Chain Compatibility
+Eth Chain listing on uniswap
+Major exchange listing
+Visa Card system running
+Stable Coin system released
+
+
+Reward Index : 100002314814 (2% a day)  - > 2/86400 (secs in a day)
